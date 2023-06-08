@@ -5,7 +5,7 @@ import * as yup from "yup";
 import classNames from "classnames";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import http from "../../../http";
+import { formHttp } from "../../../http";
 import { APP_ENV } from "../../../env";
 const CreateCategory = () => {
 
@@ -15,7 +15,7 @@ const CreateCategory = () => {
 
     
     useEffect(() => {
-        http.get("api/Categories/list")
+        formHttp.get("api/Categories/list")
             .then(resp => {
                 const data = resp.data;
                 setList(data);

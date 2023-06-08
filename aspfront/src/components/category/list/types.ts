@@ -5,5 +5,5 @@ export interface ICategoryItem {
     "image": string,
     "description": string,
     "parentId": number|null|undefined,
-    "status":boolean
+    "status":number
 }

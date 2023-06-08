@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import CategoriesView from './components/category/list/CategoriesView';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateCategory from './components/category/create/CreateCategory';
+import RegistrationView from './components/auth/registration/RegistrationPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,6 +17,7 @@ root.render(
           <Route path="/" element={<App />}>
             <Route path="List" element={<CategoriesView/>} />
             <Route path="Addcategory" element={<CreateCategory/>} />
+            <Route path="register" element={<RegistrationView/>} />
           </Route>
         </Routes>
     </BrowserRouter>

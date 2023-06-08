@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { APP_ENV } from "../../../env";
-import http from "../../../http";
+import { http } from "../../../http";
 import { ICategoryItem } from "./types";
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,7 @@ const CategoriesView = () => {
 
                 setList(data);
                 setLoading(false);
+                console.log(data);
             });
     }, []);
 
@@ -82,7 +83,7 @@ const CategoriesView = () => {
                                         </td>
                                         <td>
                                             <text>{item.status}</text>
-                                            {item.status == true ? <div className='ok'><span>Activated</span></div> : <div className='no'><span>Not working</span></div>}
+                                            {item.status == 1 ? <div className='ok'><span>Activated</span></div> : <div className='no'><span>Not working</span></div>}
                                         </td>
                                         <td>
                                             {item.parentId}
