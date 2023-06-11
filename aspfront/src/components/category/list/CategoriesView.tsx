@@ -2,20 +2,30 @@ import { useEffect, useState } from "react";
 import { APP_ENV } from "../../../env";
 import { http } from "../../../http";
 import { ICategoryItem } from "./types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthUserActionType, IAuthUser } from "../../auth/types";
+import { useDispatch, useSelector } from "react-redux";
 
 const CategoriesView = () => {
     const [list, setList] = useState<ICategoryItem[]>([]);
     const [isLoading, setLoading] = useState<boolean>(true);
+    const { isAuth, user } = useSelector((store: any) => store.auth as IAuthUser);
+    const navigator = useNavigate();
+    
     useEffect(() => {
-        http.get("api/Categories/list")
-            .then(resp => {
-                const data = resp.data;
+        if (isAuth == false) {
+            navigator("/login");
+        }
+        else {
+            http.get("api/Categories/list")
+                .then(resp => {
+                    const data = resp.data;
 
-                setList(data);
-                setLoading(false);
-                console.log(data);
-            });
+                    setList(data);
+                    setLoading(false);
+                    console.log(data);
+                });
+        }
     }, []);
 
 
@@ -64,7 +74,7 @@ const CategoriesView = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {list ? (
 
                                 list.map((item: ICategoryItem) => (
@@ -76,7 +86,7 @@ const CategoriesView = () => {
                                             {item.id}
                                         </td>
                                         <td>
-                                            <img src={APP_ENV.BASE_URL+'images/' + item.image} height={60}></img>
+                                            <img src={APP_ENV.BASE_URL + 'images/' + item.image} height={60}></img>
                                         </td>
                                         <td>
                                             {item.name}

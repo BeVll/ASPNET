@@ -7,19 +7,28 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { formHttp } from "../../../http";
 import { APP_ENV } from "../../../env";
+import { AuthUserActionType, IAuthUser } from "../../auth/types";
+import { useDispatch, useSelector } from "react-redux";
+
 const CreateCategory = () => {
 
     const navigator = useNavigate();
     const [image, setImage] = useState<string>();
     const [list, setList] = useState<ICategoryItem[]>([]);
-
+    const { isAuth, user } = useSelector((store: any) => store.auth as IAuthUser);
     
     useEffect(() => {
-        formHttp.get("api/Categories/list")
+        if (isAuth == false) {
+            navigator("/login");
+        }
+        else{
+            formHttp.get("api/Categories/list")
             .then(resp => {
                 const data = resp.data;
                 setList(data);
             });
+        }
+        
     }, []);
 
     const initValues: ICategoryCreate = {
