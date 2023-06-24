@@ -10,12 +10,7 @@ import Sidebar from './components/home/sidebar/SideBar';
 function App() {
   return (
     <div className="App">
-
-      <Sidebar ></Sidebar>
-      <div className='content'>
-      <Outlet></Outlet>
-      </div>
-      
+      <Outlet></Outlet>     
     </div>
   );
 }

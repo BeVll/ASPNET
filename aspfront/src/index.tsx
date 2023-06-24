@@ -13,6 +13,8 @@ import jwtDecode from "jwt-decode";
 import { store } from "./store";
 import { AuthUserActionType, IUser } from "./components/auth/types";
 import {http} from "./http";
+import EditCategory from './components/category/edit/EditCategory';
+import DashboardView from './components/dashboard/DashboardView';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -35,8 +37,14 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<CategoriesView />} />
-          <Route path="Addcategory" element={<CreateCategory />} />
+        <Route index element={<DashboardView />} />
+
+          <Route path='categories' element={<CategoriesView />}/>
+            
+ 
+          <Route path="/categories/add" element={<CreateCategory />} />
+            <Route path="/categories/edit" element={<EditCategory />} />
+          
           <Route path="register" element={<RegistrationView />} />
           <Route path="login" element={<LoginView />} />
         </Route>

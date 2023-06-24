@@ -64,7 +64,7 @@ const CreateCategory = () => {
         data.append('priority', JSON.stringify(values.priority));
         data.append('parentId', JSON.stringify(Number(values.parentId)));
         http2.post("api/Categories/create", data).then(() => {
-            navigator("/List");
+            navigator("/categories");
             navigator(0);
         });
         console.log("post");
@@ -101,7 +101,7 @@ const CreateCategory = () => {
                 <div className='tableHeader'>
                     <h2>Add category</h2>
 
-                    <Link to="/List" className='btn btn-success'>
+                    <Link to="/categories" className='btn btn-success'>
 
                         <i className='fa fa-2x fa-chevron-circle-left '></i>
                         <span>Back</span>

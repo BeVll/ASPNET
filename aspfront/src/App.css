@@ -11,6 +11,15 @@ body {
   background-color: #EFF2F7;
 }
 
+.pageContent {
+  margin-left: 76px;
+}
+
+.btn-primary {
+  background-color: #21232F !important;
+  border-color: #21232F !important;
+}
+
 .iconMenu {
   display: flex;
   align-items: center;
@@ -57,8 +66,37 @@ body {
   bottom: 0;
   padding: 15px;
 }
-.main-menu .logout li a:hover {
+.main-menu .logout .log a:hover {
   background-color: #a30404;
+}
+.main-menu .profile {
+  overflow: hidden;
+  transition: 0.4s;
+}
+.main-menu .profile .profileImg {
+  width: 46px;
+  height: 46px;
+  background-size: cover;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+.main-menu .profile:hover .profileImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 0;
+}
+.main-menu .profile:hover a {
+  transition: 0.4s;
+}
+.main-menu .profile:hover a:hover {
+  background-color: #21232F;
+  height: 70px;
+}
+.main-menu .profile a {
+  transition: 0.4s;
+}
+.main-menu .profile .email {
+  margin-left: 10px;
 }
 .main-menu ul {
   padding: 0 15px;
@@ -268,6 +306,13 @@ input[type=file]::file-selector-button:hover {
 
 input[type=checkbox] {
   margin-right: 5px;
+}
+
+.deleteBtn {
+  border-radius: 20px 20px 0px 0px !important;
+  width: 120px;
+  height: 30px;
+  padding: 0 !important;
 }
 
 .loader-container {
