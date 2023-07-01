@@ -20,19 +20,12 @@ const EditCategory = () => {
     const { isAuth, user } = useSelector((store: any) => store.auth as IAuthUser);
 
     useEffect(() => {
-        console.log(isAuth);
-        if (isAuth == false) {
-            navigator("/login");
-        }
-        else {
-            getCategory();
-            formHttp.get("api/Categories/list")
+        getCategory();
+        formHttp.get("api/Categories/list")
             .then(resp => {
                 const data = resp.data;
                 setList(data);
             });
-        }
-
     }, []);
 
     const getCategory = () => {
@@ -120,7 +113,7 @@ const EditCategory = () => {
                     <div className='tableHeader'>
                         <h2>Edit category</h2>
 
-                        <Link to="/categories" className='btn btn-success'>
+                        <Link to=".." className='btn btn-success'>
 
                             <i className='fa fa-2x fa-chevron-circle-left '></i>
                             <span>Back</span>
@@ -147,28 +140,28 @@ const EditCategory = () => {
                             {errors.name && touched.name && <div className="invalid-feedback">{errors.name}</div>}
                         </div>
                         <div className="mb-3">
-                        <label htmlFor="name" className="form-label">Priority</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="priority"
-                            name="priority"
-                            value={values.priority}
-                            onChange={handleChange}
-                        />
-                        {errors.name && touched.name && <div className="invalid-feedback">{errors.name}</div>}
+                            <label htmlFor="name" className="form-label">Priority</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="priority"
+                                name="priority"
+                                value={values.priority}
+                                onChange={handleChange}
+                            />
+                            {errors.name && touched.name && <div className="invalid-feedback">{errors.name}</div>}
 
-                    </div>
+                        </div>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Parent category</label>
                             <select className="form-select" aria-label="Default select example" id="parentId" name="parentId" value={values.parentId} onChange={handleChange}>
                                 <option value={0} selected>None</option>
                                 {list.map(item => {
                                     return (
-                                    item.id != Number(searchParams.get('id')) ? 
-                                        (
-                                            <option value={item.id}>{item.id} - {item.name}</option>
-                                        )
+                                        item.id != Number(searchParams.get('id')) ?
+                                            (
+                                                <option value={item.id}>{item.id} - {item.name}</option>
+                                            )
                                             :
                                             (<></>)
                                     )

@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import jwtDecode from "jwt-decode";
 import { store } from "./store";
 import { AuthUserActionType, IUser } from "./components/auth/types";
-import {http} from "./http";
+import { http } from "./http";
 import EditCategory from './components/category/edit/EditCategory';
 import DashboardView from './components/dashboard/DashboardView';
 
@@ -27,7 +27,9 @@ if (localStorage.token) {
     type: AuthUserActionType.LOGIN_USER, payload: {
       email: user.email,
       name: user.name,
-      image: user.image
+      image: user.image,
+      exp: user.exp,
+      roles: user.roles
     } as IUser
   });
 }
@@ -37,14 +39,14 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-        <Route index element={<DashboardView />} />
+          <Route index element={<DashboardView />} />
 
-          <Route path='categories' element={<CategoriesView />}/>
-            
- 
-          <Route path="/categories/add" element={<CreateCategory />} />
-            <Route path="/categories/edit" element={<EditCategory />} />
-          
+          <Route path='categories'>
+            <Route index element={<CategoriesView />} />
+            <Route path="create" element={<CreateCategory />} />
+            <Route path="edit" element={<EditCategory />} />
+          </Route>
+
           <Route path="register" element={<RegistrationView />} />
           <Route path="login" element={<LoginView />} />
         </Route>

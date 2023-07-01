@@ -14,25 +14,21 @@ const CategoriesView = () => {
     const { isAuth, user } = useSelector((store: any) => store.auth as IAuthUser);
     const [deleteId, setId] = useState<number>();
     const navigator = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (isAuth == false) {
-            navigator("/login");
-        }
-        else {
-            loadCategories();
-        }
+        loadCategories();
     }, []);
 
     const loadCategories = () => {
         http.get("api/Categories/list")
-        .then(resp => {
-            const data = resp.data;
+            .then(resp => {
+                const data = resp.data;
 
-            setList(data);
-            setLoading(false);
-            console.log(data);
-        });
+                setList(data);
+                setLoading(false);
+                console.log(data);
+            });
     }
 
     const deleteConfirmed = () => {
@@ -65,7 +61,7 @@ const CategoriesView = () => {
                     <div className='ListColumn'>
                         <div className='tableHeader'>
                             <h2>Categories</h2>
-                            <Link to="/categories/add" className='btn btn-success'>
+                            <Link to="create" className='btn btn-success'>
                                 <i className='fa fa-2x fa-plus-circle'></i>
                                 <span>Add</span>
                             </Link>
@@ -127,7 +123,7 @@ const CategoriesView = () => {
                                                 {item.description}
                                             </td>
                                             <td>
-                                            <a onClick={() => deleteCategory(item.id)} ><i className='fa fa-trash btnDelete'></i></a>
+                                                <a onClick={() => deleteCategory(item.id)} ><i className='fa fa-trash btnDelete'></i></a>
                                                 <Link to={"/categories/edit?id=" + item.id}><i className='fa fa-edit btnEdit'></i></Link>
                                             </td>
 
@@ -158,7 +154,7 @@ const CategoriesView = () => {
                         </div>
                     </div>
                 </div>
-                
+
             )}
         </div>
     );

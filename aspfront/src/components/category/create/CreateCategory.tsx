@@ -16,19 +16,13 @@ const CreateCategory = () => {
     const [image, setImage] = useState<string>();
     const [list, setList] = useState<ICategoryItem[]>([]);
     const { isAuth, user } = useSelector((store: any) => store.auth as IAuthUser);
-    
+
     useEffect(() => {
-        if (isAuth == false) {
-            navigator("/login");
-        }
-        else{
-            formHttp.get("api/Categories/list")
+        formHttp.get("api/Categories/list")
             .then(resp => {
                 const data = resp.data;
                 setList(data);
             });
-        }
-        
     }, []);
 
     const initValues: ICategoryCreate = {
@@ -64,8 +58,8 @@ const CreateCategory = () => {
         data.append('priority', JSON.stringify(values.priority));
         data.append('parentId', JSON.stringify(Number(values.parentId)));
         http2.post("api/Categories/create", data).then(() => {
-            navigator("/categories");
-            navigator(0);
+            navigator("..");
+
         });
         console.log("post");
     }
@@ -101,7 +95,7 @@ const CreateCategory = () => {
                 <div className='tableHeader'>
                     <h2>Add category</h2>
 
-                    <Link to="/categories" className='btn btn-success'>
+                    <Link to=".." className='btn btn-success'>
 
                         <i className='fa fa-2x fa-chevron-circle-left '></i>
                         <span>Back</span>
@@ -135,7 +129,7 @@ const CreateCategory = () => {
 
                     </div>
                     <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Parent category</label>
+                        <label htmlFor="name" className="form-label">Parent category</label>
                         <select className="form-select" aria-label="Default select example" id="parentId" name="parentId" value={values.parentId} onChange={handleChange}>
                             <option selected>None</option>
                             {list.map(item => {

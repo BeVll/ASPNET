@@ -36,17 +36,26 @@ const LoginView = () => {
       const result = await http.post<ILoginResult>("api/Auth/login", values);
       const { token } = result.data;
       const user = jwtDecode(token) as IUser;
-      localStorage.token = token;
-      setMessage("");
-      setLoading(false);
-      http.defaults.headers.common['Authorization'] = `Bearer ${localStorage.token}`;
-      dispatch({
-        type: AuthUserActionType.LOGIN_USER, payload: {
-          email: user.email,
-          name: user.name
-        } as IUser
-      });
-      navigator("/");
+      if(user.roles == "Admin"){
+        localStorage.token = token;
+        setMessage("");
+        setLoading(false);
+        http.defaults.headers.common['Authorization'] = `Bearer ${localStorage.token}`;
+        dispatch({
+          type: AuthUserActionType.LOGIN_USER, payload: {
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            exp: user.exp,
+            roles: user.roles
+          } as IUser
+        });
+        navigator("/");
+      }
+      else{
+        setMessage("You are not admin!");
+        setLoading(false);
+      }
     }
     catch (error) {
       setLoading(false);

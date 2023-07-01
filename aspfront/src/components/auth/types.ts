@@ -9,7 +9,9 @@ export interface IAuthUser {
 }
 
 export interface IUser {
-    email: string,
-    name: string,
-    image: string
+    email: string;
+    name: string;
+    image: string;
+    exp: number;
+    roles: string;
 }
