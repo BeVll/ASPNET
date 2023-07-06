@@ -15,6 +15,9 @@ import { AuthUserActionType, IUser } from "./components/auth/types";
 import { http } from "./http";
 import EditCategory from './components/category/edit/EditCategory';
 import DashboardView from './components/dashboard/DashboardView';
+import UsersView from './components/user/list/UsersView';
+import CreateUser from './components/user/create/CreateUser';
+import EditUser from './components/user/edit/EditUser';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -46,7 +49,11 @@ root.render(
             <Route path="create" element={<CreateCategory />} />
             <Route path="edit" element={<EditCategory />} />
           </Route>
-
+          <Route path='users'>
+            <Route index element={<UsersView />} />
+            <Route path="create" element={<CreateUser />} />
+            <Route path="edit" element={<EditUser/>} />
+          </Route>
           <Route path="register" element={<RegistrationView />} />
           <Route path="login" element={<LoginView />} />
         </Route>

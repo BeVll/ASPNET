@@ -33,7 +33,7 @@ export default function SideBar(props: ISidebarProps) {
                 <MenuItem name="Dashboard" icon="fa fa-dashboard fa-2x" active={props.page == 1 ? "activeMenu" : ""} link="/"></MenuItem>
                 <MenuItem name="Categories" icon="fa fa-th-large fa-2x" active={props.page == 2 ? "activeMenu" : ""} link="/categories"></MenuItem>
                 <MenuItem name="Products" icon="fa fa-shopping-bag fa-2x" active={props.page == 3 ? "activeMenu" : ""} link="/products"></MenuItem>
-                <MenuItem name="Users" icon="fa fa-user fa-2x" active={props.page == 4 ? "activeMenu" : ""} link=""></MenuItem>
+                <MenuItem name="Users" icon="fa fa-user fa-2x" active={props.page == 4 ? "activeMenu" : ""} link="/users"></MenuItem>
                 <MenuItem name="Orders" icon="fa fa-truck fa-2x" active={props.page == 5 ? "activeMenu" : ""} link=""></MenuItem>
             </ul>
 
