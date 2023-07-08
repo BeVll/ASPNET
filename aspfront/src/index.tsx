@@ -18,6 +18,8 @@ import DashboardView from './components/dashboard/DashboardView';
 import UsersView from './components/user/list/UsersView';
 import CreateUser from './components/user/create/CreateUser';
 import EditUser from './components/user/edit/EditUser';
+import ProductsView from './components/product/list/ProductsView';
+import CreateProduct from './components/product/create/CreateProduct';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -53,6 +55,11 @@ root.render(
             <Route index element={<UsersView />} />
             <Route path="create" element={<CreateUser />} />
             <Route path="edit" element={<EditUser/>} />
+          </Route>
+          <Route path='products'>
+            <Route index element={<ProductsView/>} />
+            <Route path="create" element={<CreateProduct />} />
+            <Route path="edit" element={<EditCategory />} />
           </Route>
           <Route path="register" element={<RegistrationView />} />
           <Route path="login" element={<LoginView />} />
